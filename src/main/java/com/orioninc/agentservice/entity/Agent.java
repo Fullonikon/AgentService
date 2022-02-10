@@ -18,20 +18,38 @@ public class Agent {
 
   @Column(name = "name")
   String name;
+
   @Column(name = "status")
   Boolean status;
+
   @Column(name = "skill")
   String skill;
 
-  public Agent(String name, Boolean status, String skill) {
+  @Column(name = "language")
+  String language;
+
+  @Column(name = "isAvailable")
+  Boolean isAvailable;
+
+  public Agent(String name, Boolean status, String skill, String language, Boolean isAvailable) {
     this.name = name;
     this.status = status;
     this.skill = skill;
+    this.language = language;
+    this.isAvailable = isAvailable;
   }
 
-  public Agent() {
-
+  public Agent(
+      Long id, String name, Boolean status, String skill, String language, Boolean isAvailable) {
+    this.id = id;
+    this.name = name;
+    this.status = status;
+    this.skill = skill;
+    this.language = language;
+    this.isAvailable = isAvailable;
   }
+
+  public Agent() {}
 
   public Long getId() {
     return id;
@@ -63,5 +81,21 @@ public class Agent {
 
   public void setSkill(String skill) {
     this.skill = skill;
+  }
+
+  public Boolean getAvailable() {
+    return isAvailable;
+  }
+
+  public void setAvailable(Boolean available) {
+    isAvailable = available;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
   }
 }

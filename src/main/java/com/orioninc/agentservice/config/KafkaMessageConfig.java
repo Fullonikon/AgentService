@@ -1,6 +1,6 @@
 package com.orioninc.agentservice.config;
 
-import com.orioninc.avro.AgentSchema;
+import com.orioninc.avro.MessageSchema;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.subject.RecordNameStrategy;
@@ -15,12 +15,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
 @Configuration
-public class KafkaAgentConfig {
+public class KafkaMessageConfig {
 
   public final static String BOOTSTRAP_SERVERS = "localhost:29092";
 
   @Bean
-  public ProducerFactory<String, AgentSchema> producerFactory() {
+  public ProducerFactory<String, MessageSchema> messageProducerFactory() {
     Map<String, Object> configProps = new HashMap<>();
     configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
     configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -34,8 +34,8 @@ public class KafkaAgentConfig {
   }
 
   @Bean
-  public KafkaTemplate<String, AgentSchema> kafkaTemplate() {
-    return new KafkaTemplate<>(producerFactory());
+  public KafkaTemplate<String, MessageSchema> messageKafkaTemplate() {
+    return new KafkaTemplate<>(messageProducerFactory());
   }
 
 }

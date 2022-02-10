@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "namespace": "com.orioninc.queueservice.avro",
+  "namespace": "com.orioninc.avro",
   "name": "AgentSchema",
   "fields": [
     {
@@ -13,7 +13,8 @@
     },
     {
       "name": "name",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "status",
@@ -21,7 +22,18 @@
       "default": false
     },
     {
+      "name": "isAvailable",
+      "type": "boolean",
+      "default": true
+    },
+    {
       "name": "skill",
-      "type": "string"
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "default": ""
     }]
 }

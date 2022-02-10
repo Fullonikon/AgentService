@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.orioninc.queueservice.avro;
+package com.orioninc.avro;
 
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.message.BinaryMessageEncoder;
@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8315477227783029554L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AgentSchema\",\"namespace\":\"com.orioninc.queueservice.avro\",\"fields\":[{\"name\":\"requestType\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"status\",\"type\":\"boolean\",\"default\":false},{\"name\":\"skill\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 4747642107829582237L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AgentSchema\",\"namespace\":\"com.orioninc.avro\",\"fields\":[{\"name\":\"requestType\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":\"string\",\"default\":\"\"},{\"name\":\"status\",\"type\":\"boolean\",\"default\":false},{\"name\":\"isAvailable\",\"type\":\"boolean\",\"default\":true},{\"name\":\"skill\",\"type\":\"string\",\"default\":\"\"},{\"name\":\"language\",\"type\":\"string\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -55,7 +55,9 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
   @Deprecated public long id;
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public boolean status;
+  @Deprecated public boolean isAvailable;
   @Deprecated public java.lang.CharSequence skill;
+  @Deprecated public java.lang.CharSequence language;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -70,14 +72,18 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * @param id The new value for id
    * @param name The new value for name
    * @param status The new value for status
+   * @param isAvailable The new value for isAvailable
    * @param skill The new value for skill
+   * @param language The new value for language
    */
-  public AgentSchema(java.lang.CharSequence requestType, java.lang.Long id, java.lang.CharSequence name, java.lang.Boolean status, java.lang.CharSequence skill) {
+  public AgentSchema(java.lang.CharSequence requestType, java.lang.Long id, java.lang.CharSequence name, java.lang.Boolean status, java.lang.Boolean isAvailable, java.lang.CharSequence skill, java.lang.CharSequence language) {
     this.requestType = requestType;
     this.id = id;
     this.name = name;
     this.status = status;
+    this.isAvailable = isAvailable;
     this.skill = skill;
+    this.language = language;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -88,7 +94,9 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
     case 1: return id;
     case 2: return name;
     case 3: return status;
-    case 4: return skill;
+    case 4: return isAvailable;
+    case 5: return skill;
+    case 6: return language;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -101,7 +109,9 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
     case 1: id = (java.lang.Long)value$; break;
     case 2: name = (java.lang.CharSequence)value$; break;
     case 3: status = (java.lang.Boolean)value$; break;
-    case 4: skill = (java.lang.CharSequence)value$; break;
+    case 4: isAvailable = (java.lang.Boolean)value$; break;
+    case 5: skill = (java.lang.CharSequence)value$; break;
+    case 6: language = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -171,6 +181,22 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
+   * Gets the value of the 'isAvailable' field.
+   * @return The value of the 'isAvailable' field.
+   */
+  public java.lang.Boolean getIsAvailable() {
+    return isAvailable;
+  }
+
+  /**
+   * Sets the value of the 'isAvailable' field.
+   * @param value the value to set.
+   */
+  public void setIsAvailable(java.lang.Boolean value) {
+    this.isAvailable = value;
+  }
+
+  /**
    * Gets the value of the 'skill' field.
    * @return The value of the 'skill' field.
    */
@@ -187,11 +213,27 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
+   * Gets the value of the 'language' field.
+   * @return The value of the 'language' field.
+   */
+  public java.lang.CharSequence getLanguage() {
+    return language;
+  }
+
+  /**
+   * Sets the value of the 'language' field.
+   * @param value the value to set.
+   */
+  public void setLanguage(java.lang.CharSequence value) {
+    this.language = value;
+  }
+
+  /**
    * Creates a new AgentSchema RecordBuilder.
    * @return A new AgentSchema RecordBuilder
    */
-  public static com.orioninc.queueservice.avro.AgentSchema.Builder newBuilder() {
-    return new com.orioninc.queueservice.avro.AgentSchema.Builder();
+  public static com.orioninc.avro.AgentSchema.Builder newBuilder() {
+    return new com.orioninc.avro.AgentSchema.Builder();
   }
 
   /**
@@ -199,8 +241,8 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing builder to copy.
    * @return A new AgentSchema RecordBuilder
    */
-  public static com.orioninc.queueservice.avro.AgentSchema.Builder newBuilder(com.orioninc.queueservice.avro.AgentSchema.Builder other) {
-    return new com.orioninc.queueservice.avro.AgentSchema.Builder(other);
+  public static com.orioninc.avro.AgentSchema.Builder newBuilder(com.orioninc.avro.AgentSchema.Builder other) {
+    return new com.orioninc.avro.AgentSchema.Builder(other);
   }
 
   /**
@@ -208,8 +250,8 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing instance to copy.
    * @return A new AgentSchema RecordBuilder
    */
-  public static com.orioninc.queueservice.avro.AgentSchema.Builder newBuilder(com.orioninc.queueservice.avro.AgentSchema other) {
-    return new com.orioninc.queueservice.avro.AgentSchema.Builder(other);
+  public static com.orioninc.avro.AgentSchema.Builder newBuilder(com.orioninc.avro.AgentSchema other) {
+    return new com.orioninc.avro.AgentSchema.Builder(other);
   }
 
   /**
@@ -222,7 +264,9 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
     private long id;
     private java.lang.CharSequence name;
     private boolean status;
+    private boolean isAvailable;
     private java.lang.CharSequence skill;
+    private java.lang.CharSequence language;
 
     /** Creates a new Builder */
     private Builder() {
@@ -233,7 +277,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.orioninc.queueservice.avro.AgentSchema.Builder other) {
+    private Builder(com.orioninc.avro.AgentSchema.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.requestType)) {
         this.requestType = data().deepCopy(fields()[0].schema(), other.requestType);
@@ -251,9 +295,17 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
         this.status = data().deepCopy(fields()[3].schema(), other.status);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.skill)) {
-        this.skill = data().deepCopy(fields()[4].schema(), other.skill);
+      if (isValidValue(fields()[4], other.isAvailable)) {
+        this.isAvailable = data().deepCopy(fields()[4].schema(), other.isAvailable);
         fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.skill)) {
+        this.skill = data().deepCopy(fields()[5].schema(), other.skill);
+        fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.language)) {
+        this.language = data().deepCopy(fields()[6].schema(), other.language);
+        fieldSetFlags()[6] = true;
       }
     }
 
@@ -261,7 +313,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing AgentSchema instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.orioninc.queueservice.avro.AgentSchema other) {
+    private Builder(com.orioninc.avro.AgentSchema other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.requestType)) {
         this.requestType = data().deepCopy(fields()[0].schema(), other.requestType);
@@ -279,9 +331,17 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
         this.status = data().deepCopy(fields()[3].schema(), other.status);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.skill)) {
-        this.skill = data().deepCopy(fields()[4].schema(), other.skill);
+      if (isValidValue(fields()[4], other.isAvailable)) {
+        this.isAvailable = data().deepCopy(fields()[4].schema(), other.isAvailable);
         fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.skill)) {
+        this.skill = data().deepCopy(fields()[5].schema(), other.skill);
+        fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.language)) {
+        this.language = data().deepCopy(fields()[6].schema(), other.language);
+        fieldSetFlags()[6] = true;
       }
     }
 
@@ -298,7 +358,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'requestType'.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder setRequestType(java.lang.CharSequence value) {
+    public com.orioninc.avro.AgentSchema.Builder setRequestType(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.requestType = value;
       fieldSetFlags()[0] = true;
@@ -318,7 +378,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'requestType' field.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder clearRequestType() {
+    public com.orioninc.avro.AgentSchema.Builder clearRequestType() {
       requestType = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -337,7 +397,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder setId(long value) {
+    public com.orioninc.avro.AgentSchema.Builder setId(long value) {
       validate(fields()[1], value);
       this.id = value;
       fieldSetFlags()[1] = true;
@@ -357,7 +417,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder clearId() {
+    public com.orioninc.avro.AgentSchema.Builder clearId() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -375,7 +435,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'name'.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder setName(java.lang.CharSequence value) {
+    public com.orioninc.avro.AgentSchema.Builder setName(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.name = value;
       fieldSetFlags()[2] = true;
@@ -395,7 +455,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'name' field.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder clearName() {
+    public com.orioninc.avro.AgentSchema.Builder clearName() {
       name = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -414,7 +474,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'status'.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder setStatus(boolean value) {
+    public com.orioninc.avro.AgentSchema.Builder setStatus(boolean value) {
       validate(fields()[3], value);
       this.status = value;
       fieldSetFlags()[3] = true;
@@ -434,8 +494,46 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'status' field.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder clearStatus() {
+    public com.orioninc.avro.AgentSchema.Builder clearStatus() {
       fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'isAvailable' field.
+      * @return The value.
+      */
+    public java.lang.Boolean getIsAvailable() {
+      return isAvailable;
+    }
+
+    /**
+      * Sets the value of the 'isAvailable' field.
+      * @param value The value of 'isAvailable'.
+      * @return This builder.
+      */
+    public com.orioninc.avro.AgentSchema.Builder setIsAvailable(boolean value) {
+      validate(fields()[4], value);
+      this.isAvailable = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'isAvailable' field has been set.
+      * @return True if the 'isAvailable' field has been set, false otherwise.
+      */
+    public boolean hasIsAvailable() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'isAvailable' field.
+      * @return This builder.
+      */
+    public com.orioninc.avro.AgentSchema.Builder clearIsAvailable() {
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -452,10 +550,10 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'skill'.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder setSkill(java.lang.CharSequence value) {
-      validate(fields()[4], value);
+    public com.orioninc.avro.AgentSchema.Builder setSkill(java.lang.CharSequence value) {
+      validate(fields()[5], value);
       this.skill = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -464,7 +562,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @return True if the 'skill' field has been set, false otherwise.
       */
     public boolean hasSkill() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[5];
     }
 
 
@@ -472,9 +570,48 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'skill' field.
       * @return This builder.
       */
-    public com.orioninc.queueservice.avro.AgentSchema.Builder clearSkill() {
+    public com.orioninc.avro.AgentSchema.Builder clearSkill() {
       skill = null;
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'language' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getLanguage() {
+      return language;
+    }
+
+    /**
+      * Sets the value of the 'language' field.
+      * @param value The value of 'language'.
+      * @return This builder.
+      */
+    public com.orioninc.avro.AgentSchema.Builder setLanguage(java.lang.CharSequence value) {
+      validate(fields()[6], value);
+      this.language = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'language' field has been set.
+      * @return True if the 'language' field has been set, false otherwise.
+      */
+    public boolean hasLanguage() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'language' field.
+      * @return This builder.
+      */
+    public com.orioninc.avro.AgentSchema.Builder clearLanguage() {
+      language = null;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -487,7 +624,9 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
         record.id = fieldSetFlags()[1] ? this.id : (java.lang.Long) defaultValue(fields()[1]);
         record.name = fieldSetFlags()[2] ? this.name : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.status = fieldSetFlags()[3] ? this.status : (java.lang.Boolean) defaultValue(fields()[3]);
-        record.skill = fieldSetFlags()[4] ? this.skill : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.isAvailable = fieldSetFlags()[4] ? this.isAvailable : (java.lang.Boolean) defaultValue(fields()[4]);
+        record.skill = fieldSetFlags()[5] ? this.skill : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.language = fieldSetFlags()[6] ? this.language : (java.lang.CharSequence) defaultValue(fields()[6]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
