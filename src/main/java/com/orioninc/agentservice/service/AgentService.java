@@ -1,9 +1,12 @@
 package com.orioninc.agentservice.service;
 
 import com.orioninc.agentservice.entity.Agent;
+import com.orioninc.agentservice.entity.User;
 import com.orioninc.agentservice.repository.AgentRepository;
-import com.orioninc.avro.AgentSchema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,8 +18,15 @@ public class AgentService {
     this.agentRepository = agentRepository;
   }
 
-  public Agent registerAgent(String name, Boolean status, String skill, String language) {
-    return this.agentRepository.save(new Agent(name, status, skill, language, true));
+  public Agent registerAgent(
+      String name,
+      Boolean status,
+      String language,
+      String username,
+      String password,
+      String role) {
+    return this.agentRepository.save(
+        new Agent(name, status, language, true, username, password, role));
   }
 
   public Optional<Agent> updateAgent(Agent agent) {
@@ -43,14 +53,35 @@ public class AgentService {
     return Optional.of(agentRepository.getById(id));
   }
 
-  public Agent agentSchemaRecordToAgent(AgentSchema agentSchema) {
+  public Iterable<User> findAll() {
+    return this.agentRepository.findAll().stream().map(User::of).collect(Collectors.toList());
+  }
+
+  public Agent findByUsername(String username) {
+    return agentRepository.findByUsername(username);
+  }
+
+  public Optional<Agent> addSkill(Long id, String skill) {
+    Optional<Agent> searchedAgent = agentRepository.findById(id);
+    if (searchedAgent.isPresent()) {
+      Agent foundAgent = searchedAgent.get();
+      ArrayList<String> skills = (ArrayList<String>) foundAgent.getSkill();
+      skills.add(skill);
+      foundAgent.setSkill(skills);
+      agentRepository.save(foundAgent);
+      return Optional.of(foundAgent);
+    }
+    return Optional.empty();
+  }
+
+  /*public Agent agentSchemaRecordToAgent(AgentSchema agentSchema) {
     return new Agent(
         agentSchema.getId(),
         agentSchema.getName().toString(),
         agentSchema.getStatus(),
-        agentSchema.getSkill().toString(),
+        agentSchema.getSkill(),
         agentSchema.getLanguage().toString(),
         agentSchema.getIsAvailable());
-  }
+  }*/
 
 }

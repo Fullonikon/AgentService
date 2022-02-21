@@ -28,8 +28,11 @@
     },
     {
       "name": "skill",
-      "type": "string",
-      "default": ""
+      "type": {
+        "type": "array",
+        "items": "string",
+        "default": []
+      }
     },
     {
       "name": "language",

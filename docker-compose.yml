@@ -15,6 +15,7 @@ services:
 
   kafka1:
     image: confluentinc/cp-enterprise-kafka:5.1.2
+    restart: always
     depends_on:
       - zookeeper
     ports:
@@ -53,7 +54,12 @@ services:
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - cache:/data
-  
+  govno:
+    image: agent-service:latest
+    ports:
+      - '8075:8075'
+    environment:
+      jdbcUrl: 'jdbc:postgresql://localhost:5432/agentService1'
 volumes:
     mi2: {}
     cache:

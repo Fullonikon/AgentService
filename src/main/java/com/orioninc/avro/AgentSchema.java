@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4747642107829582237L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AgentSchema\",\"namespace\":\"com.orioninc.avro\",\"fields\":[{\"name\":\"requestType\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":\"string\",\"default\":\"\"},{\"name\":\"status\",\"type\":\"boolean\",\"default\":false},{\"name\":\"isAvailable\",\"type\":\"boolean\",\"default\":true},{\"name\":\"skill\",\"type\":\"string\",\"default\":\"\"},{\"name\":\"language\",\"type\":\"string\",\"default\":\"\"}]}");
+  private static final long serialVersionUID = 1552523932979585741L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AgentSchema\",\"namespace\":\"com.orioninc.avro\",\"fields\":[{\"name\":\"requestType\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":\"string\",\"default\":\"\"},{\"name\":\"status\",\"type\":\"boolean\",\"default\":false},{\"name\":\"isAvailable\",\"type\":\"boolean\",\"default\":true},{\"name\":\"skill\",\"type\":{\"type\":\"array\",\"items\":\"string\",\"default\":[]}},{\"name\":\"language\",\"type\":\"string\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -56,7 +56,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
   @Deprecated public java.lang.CharSequence name;
   @Deprecated public boolean status;
   @Deprecated public boolean isAvailable;
-  @Deprecated public java.lang.CharSequence skill;
+  @Deprecated public java.util.List<java.lang.CharSequence> skill;
   @Deprecated public java.lang.CharSequence language;
 
   /**
@@ -76,7 +76,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * @param skill The new value for skill
    * @param language The new value for language
    */
-  public AgentSchema(java.lang.CharSequence requestType, java.lang.Long id, java.lang.CharSequence name, java.lang.Boolean status, java.lang.Boolean isAvailable, java.lang.CharSequence skill, java.lang.CharSequence language) {
+  public AgentSchema(java.lang.CharSequence requestType, java.lang.Long id, java.lang.CharSequence name, java.lang.Boolean status, java.lang.Boolean isAvailable, java.util.List<java.lang.CharSequence> skill, java.lang.CharSequence language) {
     this.requestType = requestType;
     this.id = id;
     this.name = name;
@@ -110,7 +110,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
     case 2: name = (java.lang.CharSequence)value$; break;
     case 3: status = (java.lang.Boolean)value$; break;
     case 4: isAvailable = (java.lang.Boolean)value$; break;
-    case 5: skill = (java.lang.CharSequence)value$; break;
+    case 5: skill = (java.util.List<java.lang.CharSequence>)value$; break;
     case 6: language = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -200,7 +200,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * Gets the value of the 'skill' field.
    * @return The value of the 'skill' field.
    */
-  public java.lang.CharSequence getSkill() {
+  public java.util.List<java.lang.CharSequence> getSkill() {
     return skill;
   }
 
@@ -208,7 +208,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
    * Sets the value of the 'skill' field.
    * @param value the value to set.
    */
-  public void setSkill(java.lang.CharSequence value) {
+  public void setSkill(java.util.List<java.lang.CharSequence> value) {
     this.skill = value;
   }
 
@@ -265,7 +265,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
     private java.lang.CharSequence name;
     private boolean status;
     private boolean isAvailable;
-    private java.lang.CharSequence skill;
+    private java.util.List<java.lang.CharSequence> skill;
     private java.lang.CharSequence language;
 
     /** Creates a new Builder */
@@ -541,7 +541,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * Gets the value of the 'skill' field.
       * @return The value.
       */
-    public java.lang.CharSequence getSkill() {
+    public java.util.List<java.lang.CharSequence> getSkill() {
       return skill;
     }
 
@@ -550,7 +550,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'skill'.
       * @return This builder.
       */
-    public com.orioninc.avro.AgentSchema.Builder setSkill(java.lang.CharSequence value) {
+    public com.orioninc.avro.AgentSchema.Builder setSkill(java.util.List<java.lang.CharSequence> value) {
       validate(fields()[5], value);
       this.skill = value;
       fieldSetFlags()[5] = true;
@@ -625,7 +625,7 @@ public class AgentSchema extends org.apache.avro.specific.SpecificRecordBase imp
         record.name = fieldSetFlags()[2] ? this.name : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.status = fieldSetFlags()[3] ? this.status : (java.lang.Boolean) defaultValue(fields()[3]);
         record.isAvailable = fieldSetFlags()[4] ? this.isAvailable : (java.lang.Boolean) defaultValue(fields()[4]);
-        record.skill = fieldSetFlags()[5] ? this.skill : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.skill = fieldSetFlags()[5] ? this.skill : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[5]);
         record.language = fieldSetFlags()[6] ? this.language : (java.lang.CharSequence) defaultValue(fields()[6]);
         return record;
       } catch (java.lang.Exception e) {
